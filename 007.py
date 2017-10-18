@@ -5,16 +5,12 @@ class Solution(object):
         :rtype: int
         """
 
-        sx = str(x)
-        if '-' in sx:
-            reversed_int = int('-' + sx[::-1].rstrip('-'))
-        else:
-            reversed_int = int(sx[::-1])
-
-        if not (-2**31) < reversed_int < (2**31 - 1):
+        sign = (x > 0) - (x < 0)  # 1 for positive, 0 for 0, -1 for negative
+        reversed_int = int(str(abs(x))[::-1])
+        if not reversed_int < (2**31 - 1):
             reversed_int = 0
 
-        return reversed_int
+        return sign * reversed_int
 
 
 if __name__ == "__main__":
